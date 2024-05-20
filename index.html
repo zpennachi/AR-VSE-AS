@@ -9,19 +9,22 @@
     <button class="startButton" id="startButton1" disabled>Start Experience</button>
     <button id="resetButton">Reset Experience</button>
 
-    <script type="module">
-        try {
-            import * as THREE from './three.min.js';
-            import { GLTFLoader } from './GLTFLoader.js';
-            import { TransformControls } from './TransformControls.js';
-            import { ARButton } from './ARButton.js';
-            import { XRHandModelFactory } from './XRHandModelFactory.js';
-            import { Interaction } from './three.interaction.min.js';
-
-            console.log('Modules imported successfully');
-        } catch (error) {
-            console.error('Error importing modules:', error);
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "./three.min.js",
+                "three/addons/": "./"
+            }
         }
+    </script>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import { GLTFLoader } from 'three/addons/GLTFLoader.js';
+        import { TransformControls } from 'three/addons/TransformControls.js';
+        import { ARButton } from 'three/addons/ARButton.js';
+        import { XRHandModelFactory } from 'three/addons/XRHandModelFactory.js';
+        import { Interaction } from './three.interaction.min.js';
 
         let isGLBLoaded = false;
         let isVideoLoaded = false;
@@ -189,8 +192,7 @@
         scene.add(pointLight3);
 
         const pointLight4 = new THREE.PointLight(0x0000FF, 0.4, 30); // Blue
-        pointLight4.position.set(10, 10, 0); // Right side of the center
-        scene.add(pointLight4);
+        pointLight4.position.set(10, 10, 0);
 
         function checkAllLoaded() {
             console.log(`GLB Loaded: ${isGLBLoaded}, Video Loaded: ${isVideoLoaded}, All Audio Loaded: ${allAudioLoaded}`);
