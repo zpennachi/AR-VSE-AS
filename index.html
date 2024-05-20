@@ -10,12 +10,18 @@
     <button id="resetButton">Reset Experience</button>
 
     <script type="module">
-        import * as THREE from './three.min.js';
-        import { GLTFLoader } from './GLTFLoader.js';
-        import { TransformControls } from './TransformControls.js';
-        import { ARButton } from './ARButton.js';
-        import { XRHandModelFactory } from './XRHandModelFactory.js';
-        import { Interaction } from './three.interaction.min.js';
+        try {
+            import * as THREE from './three.min.js';
+            import { GLTFLoader } from './GLTFLoader.js';
+            import { TransformControls } from './TransformControls.js';
+            import { ARButton } from './ARButton.js';
+            import { XRHandModelFactory } from './XRHandModelFactory.js';
+            import { Interaction } from './three.interaction.min.js';
+
+            console.log('Modules imported successfully');
+        } catch (error) {
+            console.error('Error importing modules:', error);
+        }
 
         let isGLBLoaded = false;
         let isVideoLoaded = false;
